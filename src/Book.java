@@ -1,5 +1,5 @@
 import java.time.LocalDate;
-import java.util.Locale;
+import java.util.Objects;
 
 public class Book {
 
@@ -18,5 +18,16 @@ public class Book {
     private int pageCount;
     private String subject;
     private String title;
+
+    // Constructor (full-args, matches UML)
+    public Book(String isbn, String title, String subject, int pageCount, String author, LocalDate dueDate){
+        this.isbn = isbn;
+        this.title = title;
+        this.subject = subject;
+        this.pageCount = pageCount;
+        this.author = author;
+        this.dueDate = dueDate;
+    }
+
 
 }
