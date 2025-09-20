@@ -61,11 +61,11 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-    public String getIsbn() {
+    public String getISBN() {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
+    public void setISBN(String isbn) {
         this.isbn = isbn;
     }
 
@@ -86,7 +86,16 @@ public class Book {
                 Objects.equals(title, book.title) &&
                 Objects.equals(subject, book.subject) &&
                 Objects.equals(author, book.author);
-
-
+        // dueDate is intentionally not included.
+    }
+    //hashCode() -> everything except dueDate
+    @Override
+    public int hashCode(){
+        return Objects.hash(isbn, title, subject, pageCount, author);
+    }
+    // toString() -> "[Title] by [Author] ISBN: [isbn]
+    @Override
+    public String toString(){
+        return title + " by " + author + " ISBN: " + isbn;
     }
 }
