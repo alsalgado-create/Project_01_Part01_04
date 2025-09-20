@@ -28,7 +28,7 @@ public class Book {
         this.author = author;
         this.dueDate = dueDate;
     }
-
+    // Getters and Setters.
     public String getAuthor() {
         return author;
     }
