@@ -1,3 +1,11 @@
+/**
+ * @author Alexis Salgado
+ * @since 2025.09.20
+ * Abstract: This is the Book.java File
+ *
+ *
+ *
+ */
 import java.time.LocalDate;
 import java.util.Objects;
 
