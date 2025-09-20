@@ -76,4 +76,17 @@ public class Book {
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
+    // equals() -> Everything except dueDate
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(!(o instanceof Book book)) return false;
+        return  pageCount == book.pageCount &&
+                Objects.equals(isbn, book.isbn) &&
+                Objects.equals(title, book.title) &&
+                Objects.equals(subject, book.subject) &&
+                Objects.equals(author, book.author);
+
+
+    }
 }
