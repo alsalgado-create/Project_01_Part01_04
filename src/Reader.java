@@ -70,7 +70,11 @@ public class Reader {
     }
 
     public void setBooks(List<Book> books) {
-        this.books = new ArrayList<>(books);
+        if (books == null){
+            this.books = new ArrayList<>();
+        }else{
+            this.books = new ArrayList<>(books);
+        }
     }
 
     public String getPhone() {
