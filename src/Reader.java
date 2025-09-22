@@ -56,7 +56,7 @@ public class Reader {
         return books.size();
     }
 
-    // Generated Getters and Setters.
+    // Generated Getters and Setters
     public int getCardNumber() {
         return cardNumber;
     }
