@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+import Utilities.Code;
 /**
  * @author Alexis Salgado
  * @since 2025.09.21
@@ -32,6 +32,7 @@ public class Reader {
         this.books = new ArrayList<>();
     }
     // Methods
+
     public Code addBook(Book book){
         if (books.contains(book)){
             return Code.BOOK_ALREADY_CHECKED_OUT_ERROR;
@@ -48,6 +49,13 @@ public class Reader {
         }
         return Code.READER_COULD_NOT_REMOVE_BOOK_ERROR;
     }
+    public  boolean hasBook(Book book){
+        return books.contains(book);
+    }
+    public int getBookCount(){
+        return books.size();
+    }
+
     // Generated Getters and Setters.
     public int getCardNumber() {
         return cardNumber;
@@ -62,7 +70,7 @@ public class Reader {
     }
 
     public void setBooks(List<Book> books) {
-        this.books = books;
+        this.books = new ArrayList<>(books);
     }
 
     public String getPhone() {
