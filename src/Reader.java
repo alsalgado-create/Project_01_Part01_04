@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Alexis Salgado
@@ -79,4 +80,19 @@ public class Reader {
     public void setName(String name) {
         this.name = name;
     }
+    // equals and hashCode (also ignores booklist)
+    @Override
+    public  boolean equals(Object o){
+        if (this == o) return true;
+        if (!(o instanceof Reader)) return false;
+        Reader reader = (Reader) o;
+        return cardNumber == reader.cardNumber &&
+                Objects.equals(name, reader.name) &&
+                Objects.equals(name, reader.phone);
+    }
+    @Override
+    public int hashCode(){
+        return Objects.hash(cardNumber, name, phone);
+    }
+
 }
