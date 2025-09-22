@@ -94,5 +94,9 @@ public class Reader {
     public int hashCode(){
         return Objects.hash(cardNumber, name, phone);
     }
-
+    // toString
+    @Override
+    public  String toString(){
+        return name + " (#" + cardNumber + ") has checked out " + books;
+    }
 }
