@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,15 @@ public class Reader {
     // Instance fields
     private int cardNumber;
     private String name;
-    private String Phone;
+    private String phone;
     private List<Book> books;
+
+    // Constructor
+    public Reader(int cardNumber, String name, String phone){
+        this.cardNumber = cardNumber;
+        this.name = name;
+        this.phone = phone;
+        this.books = new ArrayList<>();
+    }
 
 }
