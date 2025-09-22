@@ -73,7 +73,7 @@ public class Reader {
         if (books == null){
             this.books = new ArrayList<>();
         }else{
-            this.books = new ArrayList<>(books);
+            this.books = books;
         }
     }
 
