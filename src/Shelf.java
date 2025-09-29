@@ -1,5 +1,12 @@
+/**
+ * @author Alexis Salgado
+ * @since 2025.09.28
+ * Abstract: This is the Book.java File
+ *
+ *
+ *
+ */
 import Utilities.Code;
-
 import java.lang.annotation.Native;
 import java.util.HashMap;
 import java.util.Map;
