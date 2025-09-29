@@ -1,3 +1,4 @@
+import java.lang.annotation.Native;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -44,5 +45,23 @@ public class Shelf {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+    // equals and hashcode will be (shelfNumber + subject only)
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if (!(o instanceof Shelf)) return false;
+        Shelf shelf = (Shelf) o;
+        return shelfNumber == shelf.shelfNumber &&
+                Objects.equals(subject, shelf.subject);
+    }
+    @Override
+    public int hashCode(){
+        return Objects.hash(shelfNumber, subject);
+    }
+    //toString
+    @Override
+    public String toString(){
+        return shelfNumber + " : " + subject;
     }
 }
