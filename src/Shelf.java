@@ -1,3 +1,5 @@
+import Utilities.Code;
+
 import java.lang.annotation.Native;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,5 +65,20 @@ public class Shelf {
     @Override
     public String toString(){
         return shelfNumber + " : " + subject;
+    }
+
+    // Methods
+    public int getBookCount(Book book){
+        return books.getOrDefault(books, -1);
+    }
+    public Code addBook(Book book){
+        if (!book.getSubject().equalsIgnoreCase(this.subject)){
+            return Code.SHELF_SUBJECT_MISMATCH_ERROR;
+        }
+        int count = books.getOrDefault(book, 0);
+        books.put(book, count + 1);
+
+        System.out.println(book.toString() + " added to shelf " + this.toString());
+        return Code.SUCCESS;
     }
 }
