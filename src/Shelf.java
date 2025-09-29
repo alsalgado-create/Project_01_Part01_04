@@ -95,4 +95,21 @@ public class Shelf {
         System.out.println("No copies of " + book.getTitle() + " remain on shelf " + subject);
         return Code.SUCCESS;
     }
+    public String listBooks(){
+        StringBuilder sb = new StringBuilder();
+        int total = books.values().stream().mapToInt(Integer::intValue).sum();
+
+        sb.append(total)
+                .append(total == 1 ? " book on shelf: ": " books on shelf: ")
+                .append(this.toString())
+                .append("\n");
+
+        for(Map.Entry<Book, Integer> entry : books.entrySet()){
+            sb.append(entry.getKey().toString())
+                    .append(" ")
+                    .append(entry.getValue())
+                    .append("\n");
+        }
+        return sb.toString().trim();
+    }
 }
