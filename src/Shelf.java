@@ -81,4 +81,18 @@ public class Shelf {
         System.out.println(book.toString() + " added to shelf " + this.toString());
         return Code.SUCCESS;
     }
+    public Code removeBook(Book book){
+        if (!books.containsKey(book)){
+            System.out.println(book.getTitle() + " is not on shelf " + subject);
+            return Code.BOOK_NOT_IN_INVENTORY_ERROR;
+        }
+        int count = books.get(book);
+        if(count <= 0){
+            System.out.println("No copies of " + book.getTitle() + " remain on shelf " + subject);
+            return Code.SUCCESS;
+        }
+        books.put(book,count - 1);
+        System.out.println("No copies of " + book.getTitle() + " remain on shelf " + subject);
+        return Code.SUCCESS;
+    }
 }
