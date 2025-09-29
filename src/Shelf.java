@@ -69,31 +69,36 @@ public class Shelf {
 
     // Methods
     public int getBookCount(Book book){
-        return books.getOrDefault(books, -1);
+        return books.getOrDefault(book, -1);
     }
-    public Code addBook(Book book){
+    public int addBook(Book book){
         if (!book.getSubject().equalsIgnoreCase(this.subject)){
-            return Code.SHELF_SUBJECT_MISMATCH_ERROR;
+            return -1; //single mismatch error
         }
         int count = books.getOrDefault(book, 0);
         books.put(book, count + 1);
 
         System.out.println(book.toString() + " added to shelf " + this.toString());
-        return Code.SUCCESS;
+        return count;
     }
-    public Code removeBook(Book book){
+    public int removeBook(Book book){
         if (!books.containsKey(book)){
             System.out.println(book.getTitle() + " is not on shelf " + subject);
-            return Code.BOOK_NOT_IN_INVENTORY_ERROR;
+            return -1;
         }
         int count = books.get(book);
         if(count <= 0){
             System.out.println("No copies of " + book.getTitle() + " remain on shelf " + subject);
-            return Code.SUCCESS;
+            return 0;
         }
         books.put(book,count - 1);
-        System.out.println("No copies of " + book.getTitle() + " remain on shelf " + subject);
-        return Code.SUCCESS;
+        if (count - 1 == 0){
+            System.out.println("No copies of " + book.getTitle() + " remain on shelf " + subject);
+        }else{
+            System.out.println(book.getTitle()+ " removed. " + (count - 1) + " copies remain. ");
+        }
+
+        return count - 1; //returns new count.
     }
     public String listBooks(){
         StringBuilder sb = new StringBuilder();
