@@ -33,6 +33,13 @@ public class Library {
         this.address = address;
         this.phone = phone;
     }
+
+    public Library(String csumb) {
+        this.name = csumb;
+        this.address = " ";
+        this.phone = " ";
+    }
+
     /**
      * Getters and setters
      */
@@ -171,6 +178,7 @@ public class Library {
         System.out.println(reader.getName() + " returned " + book.getTitle() + " to shelf " + shelf.getSubject());
         return Code.SUCCESS;
     }
+
     public String listShelves(){
         StringBuilder sb = new StringBuilder();
         for (Shelf shelf : shelves.values()){
