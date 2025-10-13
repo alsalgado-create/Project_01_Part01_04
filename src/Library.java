@@ -117,4 +117,42 @@ public class Library {
         System.out.println("Reader " + reader.getName() + " added to library " + name);
         return Code.SUCCESS;
     }
+    public Code addBook(Book book, int shelfNumber){
+        Shelf shelf = shelves.get(shelfNumber);
+        if (shelf == null){
+            System.out.println("Shelf #" + shelfNumber + " Does not exist. ");
+            return Code.SHELF_NUMBER_PARSE_ERROR;
+        }
+        return shelf.addBook(book);
+    }
+
+    public Code removeBook(Book book, int shelfNumber){
+        Shelf shelf = shelves.get(shelfNumber);
+        if(shelf == null){
+            System.out.println("Shelf #" + shelfNumber + " Does not exist ");
+            return Code.SHELF_NUMBER_PARSE_ERROR;
+        }
+        return shelf.removeBook(book);
+    }
+    public Code checkoutBook(Reader reader, Book book){
+        Shelf locatedShelf = null;
+        for (Shelf shelf : shelves.values()){
+            if (shelf.getBookCount(book) > 0){
+                locatedShelf = shelf;
+                break;
+            }
+        }
+        if (locatedShelf == null){
+            System.out.println("Book not available in library: " + book.getTitle());
+            return Code.BOOK_NOT_IN_INVENTORY_ERROR;
+        }
+        Code shelfResult = locatedShelf.removeBook(book);
+        if (shelfResult != Code.SUCCESS) return shelfResult;
+
+        Code readerResult = reader.addBook(book);
+        if (readerResult != Code.SUCCESS) return readerResult;
+
+        System.out.println(reader.getName() + " Checked out " + book.getTitle());
+        return Code.SUCCESS;
+    }
 }
