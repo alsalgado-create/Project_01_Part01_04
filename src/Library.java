@@ -91,4 +91,11 @@ public class Library {
     public int hashCode(){
         return Objects.hash(name, address, phone);
     }
+    /**
+     * toString
+     */
+    @Override
+    public String toString(){
+        return name + " (" + address + ")";
+    }
 }
