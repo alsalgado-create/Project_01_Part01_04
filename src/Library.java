@@ -178,18 +178,41 @@ public class Library {
         System.out.println(reader.getName() + " returned " + book.getTitle() + " to shelf " + shelf.getSubject());
         return Code.SUCCESS;
     }
-
-    public String listShelves(){
+    /**
+     Lists shelves. if showBooks is true it lists all books on each shelf, else just shelf info
+    */
+    public String listShelves(boolean showBooks){
+        if (showBooks) return listShelves(); /** Calls the parameterless version*/
         StringBuilder sb = new StringBuilder();
         for (Shelf shelf : shelves.values()){
-            sb.append(shelf.listBooks()).append("\n\n");
+            sb.append(shelf.toString()).append("\n\n"); /** only shelf info*/
         }
         return sb.toString().trim();
     }
-    public String listReaders(){
+    /** Parameterless version: lists all books on shelves. */
+    public String listShelves(){
+        StringBuilder sb = new StringBuilder();
+        for(Shelf shelf : shelves.values()){
+            sb.append(shelf.listBooks()).append("\n\n");/** Lists books in the shelf */
+
+        }
+        return sb.toString().trim();
+    }
+    /** Lists readers. if showBooks is true, list each reader and all their books, else just the reader names. */
+    public String listReaders(boolean showBooks){
+        if(showBooks) return listReaders(); /** Calls the parameterless version */
         StringBuilder sb = new StringBuilder();
         for (Reader reader : readers.values()){
-            sb.append(reader.toString()).append("\n");
+            sb.append(reader.getName()).append("\n");/** Only the reader name */
+        }
+        return sb.toString().trim();
+    }
+
+    /** Parameterless version: Lists each reader with all their books */
+    public String listReaders(){
+        StringBuilder sb = new StringBuilder();
+        for(Reader reader : readers.values()){
+            sb.append(reader.toString()).append("\n");/** reader.toString */
         }
         return sb.toString().trim();
     }
