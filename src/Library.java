@@ -98,4 +98,23 @@ public class Library {
     public String toString(){
         return name + " (" + address + ")";
     }
+    /**
+     * Methods
+     */
+    public Code addShelf(Shelf shelf){
+        if (shelves.containsKey(shelf.getShelfNumber())){
+            return Code.SHELF_EXISTS_ERROR;
+        }
+        shelves.put(shelf.getShelfNumber(), shelf);
+        System.out.println("Shelf " + shelf.getShelfNumber() + " added to library " + name);
+        return Code.SUCCESS;
+    }
+    public Code addReader(Reader reader){
+        if(readers.containsKey(reader.getCardNumber())){
+            return Code.READER_ALREADY_EXISTS_ERROR;
+        }
+        readers.put(reader.getCardNumber(), reader);
+        System.out.println("Reader " + reader.getName() + " added to library " + name);
+        return Code.SUCCESS;
+    }
 }
