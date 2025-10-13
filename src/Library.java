@@ -155,4 +155,20 @@ public class Library {
         System.out.println(reader.getName() + " Checked out " + book.getTitle());
         return Code.SUCCESS;
     }
+    public Code returnBook(Reader reader, Book book, int shelfNumber){
+        if(!readers.containsKey(reader.getCardNumber())){
+            return Code.READER_NOT_IN_LIBRARY_ERROR;
+        }
+        if (!reader.hasBook(book)){
+            return Code.READER_DOESNT_HAVE_BOOK_ERROR;
+        }
+        Shelf shelf = shelves.get(shelfNumber);
+        if(shelf == null){
+            return Code.SHELF_NUMBER_PARSE_ERROR;
+        }
+        reader.removeBook(book);
+        shelf.addBook(book);
+        System.out.println(reader.getName() + " returned " + book.getTitle() + " to shelf " + shelf.getSubject());
+        return Code.SUCCESS;
+    }
 }
