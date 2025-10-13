@@ -171,4 +171,18 @@ public class Library {
         System.out.println(reader.getName() + " returned " + book.getTitle() + " to shelf " + shelf.getSubject());
         return Code.SUCCESS;
     }
+    public String listShelves(){
+        StringBuilder sb = new StringBuilder();
+        for (Shelf shelf : shelves.values()){
+            sb.append(shelf.listBooks()).append("\n\n");
+        }
+        return sb.toString().trim();
+    }
+    public String listReaders(){
+        StringBuilder sb = new StringBuilder();
+        for (Reader reader : readers.values()){
+            sb.append(reader.toString()).append("\n");
+        }
+        return sb.toString().trim();
+    }
 }
