@@ -75,4 +75,20 @@ public class Library {
     public void setShelves(HashMap<Integer, Shelf> shelves) {
         this.shelves = shelves;
     }
+    /**
+     * Equals and hashCode
+     */
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(!(o instanceof Library)) return false;
+        Library library = (Library) o;
+        return Objects.equals(name, library.name)
+                && Objects.equals(address, library.address)
+                && Objects.equals(phone, library.phone);
+    }
+    @Override
+    public int hashCode(){
+        return Objects.hash(name, address, phone);
+    }
 }
