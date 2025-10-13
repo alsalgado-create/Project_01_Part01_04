@@ -36,6 +36,10 @@ public class Book {
         this.author = author;
         this.dueDate = dueDate;
     }
+
+    public Book(String token, String token1, String token2, String token3, String token4, int i) {
+    }
+
     // Getters and Setters.
     public String getAuthor() {
         return author;

@@ -31,6 +31,9 @@ public class Shelf {
         this.subject = subject;
     }
 
+    public Shelf(int i, String token, String token1) {
+    }
+
     //getters and setters.
     public HashMap<Book, Integer> getBooks() {
         return books;

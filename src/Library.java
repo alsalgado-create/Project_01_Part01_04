@@ -8,8 +8,10 @@
  */
 
 import Utilities.Code;
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.time.LocalDate;
+import java.io.*;
 public class Library {
     /**
      * Constant fields
@@ -178,6 +180,7 @@ public class Library {
         System.out.println(reader.getName() + " returned " + book.getTitle() + " to shelf " + shelf.getSubject());
         return Code.SUCCESS;
     }
+
     /**
      Lists shelves. if showBooks is true it lists all books on each shelf, else just shelf info
     */
@@ -215,5 +218,40 @@ public class Library {
             sb.append(reader.toString()).append("\n");/** reader.toString */
         }
         return sb.toString().trim();
+    }
+    public Code init(String filename){
+        try (Scanner sc = new Scanner(new File(filename))){
+            while (sc.hasNextLine()){
+                String line = sc.nextLine();
+                String[] tokens = line.split(",");
+
+                switch (tokens[0]){
+                    case "BOOK":
+                        if (tokens.length < 8) return Code.BOOK_RECORD_COUNT_ERROR;
+                        Book b = new Book(tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], Integer.parseInt(tokens[6]));
+                        int shelfNumber = Integer.parseInt(tokens[7]);
+                        addBook(b, shelfNumber);
+                        break;
+                    case "SHELF":
+                        if(tokens.length < 3)return Code.SHELF_COUNT_ERROR;
+                        Shelf s = new Shelf(Integer.parseInt(tokens[1]), tokens[2]);
+                        addShelf(s);
+                        break;
+                    case "READER":
+                        if(tokens.length < 4)return Code.READER_COUNT_ERROR;
+                        Reader r = new Reader(Integer.parseInt(tokens[1]), tokens[2], tokens[3]);
+                        addReader(r);
+                        break;
+
+                    default:
+                        return Code.BOOK_RECORD_COUNT_ERROR;
+                }
+            }
+        }catch (FileNotFoundException e){
+            return Code.FILE_NOT_FOUND_ERROR;
+        }catch (NumberFormatException e){
+            return Code.SHELF_NUMBER_PARSE_ERROR;
+        }
+        return Code.SUCCESS;
     }
 }
